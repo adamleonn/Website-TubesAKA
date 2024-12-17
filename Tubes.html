@@ -1,0 +1,59 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbandingan Algoritma Iteratif dan Rekursif</title>
+    <link rel="stylesheet" href="Tubes.css">
+</head>
+<body>
+    <header>
+        <h1>Perhitungan Kalori dan Protein</h1>
+    </header>
+
+    <main>
+        <section class="input-section">
+            <h3>Masukkan Data Anda</h3>
+            <label for="berat">Berat Badan (kg):</label>
+            <input type="number" id="berat" placeholder="Masukkan berat badan">
+
+            <label for="tinggi">Tinggi Badan (cm):</label>
+            <input type="number" id="tinggi" placeholder="Masukkan tinggi badan">
+
+            <label for="usia">Usia (tahun):</label>
+            <input type="number" id="usia" placeholder="Masukkan usia">
+
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender">
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+
+            <button onclick="hitungKaloriProtein()">Hitung</button>
+        </section>
+
+        <section class="output-section">
+            <h3>Hasil Perhitungan</h3>
+            <p id="hasil-iteratif">Hasil Kalori Iteratif: -</p>
+            <p id="hasil-rekursif">Hasil Kalori Rekursif: -</p>
+            <p id="hasil-protein">Kebutuhan Protein Harian: -</p>
+        </section>
+
+        <section class="explanation">
+            <div class="box-penjelasan">
+                <h3>Penjelasan Kompleksitas</h3>
+                <p>
+                    Perhitungan dengan metode <strong>iteratif</strong> bersifat langsung dengan kompleksitas <strong>O(n)</strong>. Sementara itu,
+                    metode <strong>rekursif</strong> memecah masalah menjadi bagian-bagian yang lebih kecil dan memiliki overhead pemanggilan fungsi,
+                    namun juga memiliki kompleksitas serupa <strong>O(n)</strong>.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Studi Perbandingan Algoritma By Adam Leonard</p>
+    </footer>
+
+    <script src="Tubes.js"></script>
+</body>
+</html>
