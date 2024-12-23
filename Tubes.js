@@ -1,11 +1,15 @@
-//mencari BMR menggunakan Rumus Mifflin St.Jeor//
 function hitungKaloriIteratif(bb, tb, usia, gender) {
+    const komponen = [10 * bb, 6.25 * tb, -5 * usia];
     let bmr = 0;
-    if (gender === "laki-laki") {
-        bmr = 10 * bb + 6.25 * tb - 5 * usia + 5;
-    } else {
-        bmr = 10 * bb + 6.25 * tb - 5 * usia - 161;
+
+    // Iterasi untuk menghitung komponen-komponen BMR
+    for (let i = 0; i < komponen.length; i++) {
+        bmr += komponen[i];
     }
+
+    // Tambahkan nilai tetap berdasarkan gender
+    bmr += (gender === "laki-laki") ? 5 : -161;
+
     return bmr;
 }
 
@@ -41,3 +45,38 @@ function hitungKaloriProtein() {
     document.getElementById("hasil-rekursif").innerText = `Hasil Kalori Rekursif: ${hasilRekursif.toFixed(2)} kkal`;
     document.getElementById("hasil-protein").innerText = `Kebutuhan Protein Harian: ${proteinHarian.toFixed(2)} gram`;
 }
+
+// Contoh data sampel
+const dataSampel = [
+    { bb: 70, tb: 175, usia: 25, gender: "laki-laki" },
+    { bb: 55, tb: 160, usia: 30, gender: "perempuan" },
+    { bb: 80, tb: 180, usia: 35, gender: "laki-laki" },
+    { bb: 65, tb: 170, usia: 40, gender: "perempuan" },
+    { bb: 90, tb: 185, usia: 28, gender: "laki-laki" },
+    { bb: 50, tb: 155, usia: 22, gender: "perempuan" },
+    { bb: 75, tb: 172, usia: 33, gender: "laki-laki" },
+    { bb: 60, tb: 165, usia: 29, gender: "perempuan" },
+    { bb: 85, tb: 178, usia: 45, gender: "laki-laki" },
+    { bb: 95, tb: 190, usia: 38, gender: "laki-laki" },
+];
+
+// Tampilkan data sampel di tabel
+const tableBody = document.getElementById("sample-table").querySelector("tbody");
+dataSampel.forEach((data, index) => {
+    const hasilIteratif = hitungKaloriIteratif(data.bb, data.tb, data.usia, data.gender);
+    const hasilRekursif = hitungKaloriRekursif(data.bb, data.tb, data.usia, data.gender);
+    const proteinHarian = hitungProteinHarian(data.bb);
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${data.bb}</td>
+        <td>${data.tb}</td>
+        <td>${data.usia}</td>
+        <td>${data.gender}</td>
+        <td>${hasilIteratif.toFixed(2)}</td>
+        <td>${hasilRekursif.toFixed(2)}</td>
+        <td>${proteinHarian.toFixed(2)}</td>
+    `;
+    tableBody.appendChild(row);
+});
